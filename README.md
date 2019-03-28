@@ -21,7 +21,7 @@
 
 
 
-##安装运行
+##安装
 
 `pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple numpy` 使用清华的镜像会快很多
 
