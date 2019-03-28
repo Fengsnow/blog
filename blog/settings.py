@@ -133,7 +133,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'blog',
         'USER':'root',
-        'PASSWORD':'776iel45',
+        'PASSWORD':'root',
         'HOST':'localhost',
         'PORT':3306,
         'OPTIONS': {'init_command': 'SET default_storage_engine=INNODB;'},
@@ -160,6 +160,21 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR,'frontend')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -180,7 +195,8 @@ USE_TZ = False
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, "frontend"),
+    #os.path.join(BASE_DIR, "static")
 ]
 #STATIC_ROOT = os.path.join(BASE_DIR,'static')
 

@@ -24,6 +24,8 @@ from rest_framework.routers import DefaultRouter
 
 
 from articles.views import ArticlesViewSet,CategorysViewSet,TagsViewSet,HotArticleSet,CardArticleSet,TimeLineset
+from management.views import index
+
 
 router = DefaultRouter()
 
@@ -47,6 +49,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')), #rdf登录认证
     path('docs/',include_docs_urls(title="文档")), #rdf文档
 
+    path('',index,name="index"),#主页
     path('', include(router.urls)),
 ]
 media_root = os.path.join(settings.BASE_DIR, settings.MEDIA_ROOT)

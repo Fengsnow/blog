@@ -1,5 +1,5 @@
 from rest_framework import mixins,filters,viewsets
-from rest_framework.pagination import PageNumberPagination
+from rest_framework.pagination import PageNumberPagination,CursorPagination,LimitOffsetPagination
 import datetime
 from rest_framework.response import Response
 from rest_framework import status
@@ -10,7 +10,10 @@ from .models import Category,Article,Tag
 from .serializer import CategorysSer,ArticlesSer,TagsSer,HotArticlesSer,CardArticlesSer,TimeArticlesSer,ArticlesDetailSer
 
 class ArticlesPage(PageNumberPagination):
+    #cursor_query_param = 'cursor'
     page_size = 6
+    ordering = '-create_time'
+    page_size_query_param = 'size'
     max_page_size = 10
 
 class CategorysViewSet(mixins.ListModelMixin,viewsets.GenericViewSet):
@@ -100,7 +103,7 @@ class ArticlesViewSet(mixins.ListModelMixin,mixins.RetrieveModelMixin,viewsets.G
     """
     文章列表页, 分页， 搜索， 过滤
     """
-    queryset = Article.objects.filter(status=1).order_by("create_time")
+    queryset = Article.objects.filter(status=1).order_by("-create_time")
     serializer_class = ArticlesSer
     pagination_class = ArticlesPage
     filter_backends = (DjangoFilterBackend,filters.SearchFilter)
